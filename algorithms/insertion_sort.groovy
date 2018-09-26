@@ -8,5 +8,5 @@ def run(List<Integer> values){
             index --
         }
     }
-    print(values)
+    return values
 }
