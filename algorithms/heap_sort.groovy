@@ -1,7 +1,7 @@
 package algorithms
 
 class heap_sort {
-    def run_heap_sort(List<Integer> values){
+    def run(List<Integer> values){
 
         return values
     }

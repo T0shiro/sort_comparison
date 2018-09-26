@@ -1,11 +1,11 @@
 package algorithms
 
 class merge_sort {
-    def run_merge_sort(List<Integer> values){
+    def run(List<Integer> values){
         if (values.size() <= 1){
             return values
         }
-        return fusion(run_merge_sort(values.subList(0, values.size().intdiv(2))), run_merge_sort(values.subList(values.size().intdiv(2), values.size())))
+        return fusion(run(values.subList(0, values.size().intdiv(2))), run(values.subList(values.size().intdiv(2), values.size())))
     }
 
     def fusion(List<Integer> A, List<Integer> B){
