@@ -1,6 +1,7 @@
 package algorithms
 
 class heap_sort {
+    
     def run(List<Integer> values) {
         heapify(values, values.size())
         int end = values.size() - 1
@@ -47,18 +48,15 @@ class heap_sort {
     }
 
     private def getParent(int index) {
-        (int) Math.floor((index - 1) / 2)
+        return (int) Math.floor((index - 1) / 2)
     }
 
     private def getLeftChild(int index) {
-        2 * index + 1
+        return 2 * index + 1
     }
 
     private def getRightChild(int index) {
-        2 * index + 2
+        return 2 * index + 2
     }
 
-    static void main(String[] args) {
-        println new heap_sort().run([10, 9, 8, 7, 6])
-    }
 }
