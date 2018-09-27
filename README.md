@@ -14,7 +14,7 @@ Groovy
 - Merge sort
 - Heap sort
 - Quick sort
-- Swift sort (not yet)
+- Smooth sort (not yet)
 
 ## How to run the code
-Run the ``test_sorts.groovy`` file
+Run the ``./exec.sh`` file

@@ -2,6 +2,7 @@ import algorithms.insertion_sort
 import algorithms.heap_sort
 import algorithms.merge_sort
 import algorithms.quick_sort
+import utils.CSVMaker
 
 
 MAX_TWO_POW = 10
@@ -41,5 +42,7 @@ def run_all_sorts(){
 }
 
 def insertionSort = new insertion_sort()
-println(run_one_sort(insertionSort.&run, ALGO_ITERATIONS, MAX_TWO_POW))
+def sort = run_one_sort(insertionSort.&run, ALGO_ITERATIONS, MAX_TWO_POW)
+println(sort)
+new CSVMaker(sort).generateResultsFile("results.txt")
 
