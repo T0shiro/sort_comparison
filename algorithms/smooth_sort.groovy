@@ -83,10 +83,6 @@ class smooth_sort {
         b = temp
     }
 
-    private m(int a) {
-        return tab[a]
-    }
-
     private swap(int i, int j) {
         int temp = tab[i]
         tab[i] = tab[j]
@@ -106,13 +102,13 @@ class smooth_sort {
     }
 
     private sift() {
-        while (b1 > 3) {
+        while (b1 >= 3) {
             int r2 = r1 - b1 + c1
-            if (m(r2) <= m(r1 - 1)) {
+            if (tab[r2] <= tab[r1 - 1]) {
                 r2 = r1 - 1
                 down1()
             }
-            if (m(r1) >= m(r2)) {
+            if (tab[r1] >= tab[r2]) {
                 b1 = 1
             } else {
                 swap(r1, r2)
@@ -123,8 +119,8 @@ class smooth_sort {
     }
 
     private semitrinkle() {
-        int r1 = r - c
-        if (m(r1) > m(r)) {
+        r1 = r - c
+        if (tab[r1] > tab[r]) {
             swap(r, r1)
             trinkle()
         }
@@ -140,21 +136,21 @@ class smooth_sort {
                 up1()
             }
             int r3 = r1 - b1
-            if (p1 == 1 || m(r3) <= m(r1)) {
+            if (p1 == 1 || tab[r3] <= tab[r1]) {
                 p1 = 0
-            } else if (p1 > 1 && m(r3) > m(r1)) {
+            } else if (p1 > 1 && tab[r3] > tab[r1]) {
                 p1 -= 1
                 if (b1 == 1) {
                     swap(r1, r3)
                     r1 = r3
                 } else if (b1 >= 3) {
                     int r2 = r1 - b1 + c1
-                    if (m(r2) <= m(r1 - 1)) {
+                    if (tab[r2] <= tab[r1 - 1]) {
                         r2 = r1 - 1
                         down1()
                         p1 = 2 * p1
                     }
-                    if (m(r3) >= m(r2)) {
+                    if (tab[r3] >= tab[r2]) {
                         swap(r1, r3)
                         r1 = r3
                     } else {
@@ -166,6 +162,6 @@ class smooth_sort {
                 }
             }
         }
-        sift() //MAYBE
+        sift()
     }
 }
