@@ -2,6 +2,7 @@ import algorithms.insertion_sort
 import algorithms.heap_sort
 import algorithms.merge_sort
 import algorithms.quick_sort
+import algorithms.smooth_sort
 import utils.CSVMaker
 
 
@@ -66,12 +67,18 @@ def run_sorts(List<Closure> closures, iterations, max_pow) {
     return meansList
 }
 
-def insertionSort = new insertion_sort()
-def mergeSort = new merge_sort()
-def heapSort = new heap_sort()
-def quickSort = new quick_sort()
-def sort = run_one_sort(insertionSort.&run, ALGO_ITERATIONS, MAX_TWO_POW)
-println(sort)
-new CSVMaker(sort).generateResultsFile("results.txt")
+sorting_algorithms = [new insertion_sort().&run,
+                      new heap_sort().&run,
+                      new merge_sort().&run,
+                      new smooth_sort().&run,
+                      new quick_sort().&run]
 
-//println(run_sorts([insertionSort.&run, mergeSort.&run], ALGO_ITERATIONS, MAX_TWO_POW))
+sorting_algorithms_names = ["insertionSort.txt",
+                            "heapSort.txt",
+                            "mergeSort.txt",
+                            "smoothSort.txt",
+                            "quickSort.txt"]
+
+[sorting_algorithms, sorting_algorithms_names].transpose().each {
+    new CSVMaker(run_one_sort(it[0], ALGO_ITERATIONS, MAX_TWO_POW)).generateResultsFile(it[1])
+}

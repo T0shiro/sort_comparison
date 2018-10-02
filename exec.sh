@@ -1,4 +1,4 @@
 #!/bin/bash
 
-groovy test_sorts.groovy
+groovy run_sorts.groovy
 ./generate.sh

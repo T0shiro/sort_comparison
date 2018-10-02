@@ -27,6 +27,8 @@ class quick_sort {
             while (values[j] > pivot) j--
             if (i >= j) return j
             swapValues(i, j, values)
+            i++
+            j--
         }
     }
 
