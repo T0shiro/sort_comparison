@@ -6,7 +6,7 @@ import algorithms.smooth_sort
 import utils.CSVMaker
 
 
-MAX_TWO_POW = 5
+MAX_TWO_POW = 6
 ALGO_ITERATIONS = 100
 
 def create_unsorted_array(int size, Random rand) {
@@ -22,6 +22,7 @@ def run_one_sort(Closure c, iterations, max_pow) {
     def means = new HashMap()
     for (int i = 1; i <= max_pow; i++) {
         sz = 2**i
+        println("Run algorithms for arrays of size 2^"+i)
         def results = []
         for (int j = 0; j < iterations; j++) {
             def table = create_unsorted_array(sz, rand)
@@ -47,6 +48,7 @@ def run_sorts(List<Closure> closures, iterations, max_pow) {
     }
     for (int i = 1; i <= max_pow; i++) {
         sz = 2**i
+        println("Run algorithms for arrays of size 2^"+i)
         for (int j = 0; j < iterations; j++) {
             def table = create_unsorted_array(sz, rand)
             for (int k = 0; k < closures.size(); k++) {
@@ -79,6 +81,8 @@ sorting_algorithms_names = ["insertionSort.txt",
                             "smoothSort.txt",
                             "quickSort.txt"]
 
-[sorting_algorithms, sorting_algorithms_names].transpose().each {
-    new CSVMaker(run_one_sort(it[0], ALGO_ITERATIONS, MAX_TWO_POW)).generateResultsFile(it[1])
+
+List<Map<Integer, Integer>> results = run_sorts(sorting_algorithms, ALGO_ITERATIONS, MAX_TWO_POW)
+for (int i = 0; i < sorting_algorithms_names.size(); i++) {
+    new CSVMaker(results[i]).generateResultsFile(sorting_algorithms_names[i])
 }
