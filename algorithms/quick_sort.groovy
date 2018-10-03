@@ -40,6 +40,35 @@ class quick_sort {
         return values[end]
     }
 
+    def median_of_five(List<Integer> values, int start, int end) {
+        def tab = [values[start], values[end], values[(int) ((start + end) / 2)], values[(int) ((3 * start + end) / 4)], values[(int) ((start + 3 * end) / 4)]]
+        def pair1 = tab[0..1]
+        if (pair1[0] > pair1[1]) {
+            swapValues(0, 1, pair1)
+        }
+        def pair2 = tab[2..3]
+        if (pair2[0] > pair2[1]) {
+            swapValues(0, 1, pair2)
+        }
+        if (pair1[1] > pair2[1]) {
+            pair1.remove(1)
+            if (pair1[0] > tab[4]) {
+                pair1.add(0, tab[4])
+            } else {
+                pair1.add(tab[4])
+            }
+        } else {
+            pair2.remove(1)
+            if (pair2[0] > tab[4]) {
+                pair2.add(0, tab[4])
+            } else {
+                pair2.add(tab[4])
+            }
+        }
+        def pair3 = (pair1[1] > pair2[1]) ? [pair1[0], pair2[1]] : [pair1[1], pair2[0]]
+        return pair3.max()
+    }
+
     private def median_random(List<Integer> values, int start, int end) {
         return values[random.nextInt(end - start + 1) + start]
     }
@@ -52,10 +81,6 @@ class quick_sort {
         int tmp = values[a]
         values[a] = values[b]
         values[b] = tmp
-    }
-
-    static void main(String[] args) {
-        println new quick_sort().run([4, 2, 9, 5, 7])
     }
 
 }
