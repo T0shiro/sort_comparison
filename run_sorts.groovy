@@ -3,11 +3,12 @@ import algorithms.heap_sort
 import algorithms.merge_sort
 import algorithms.quick_sort
 import algorithms.smooth_sort
+import algorithms.api_sort
 import utils.CSVMaker
 
 
-MAX_TWO_POW = 6
-ALGO_ITERATIONS = 100
+MAX_TWO_POW = 13
+ALGO_ITERATIONS = 1000
 
 def create_unsorted_array(int size, Random rand) {
     def table = []
@@ -22,7 +23,7 @@ def run_one_sort(Closure c, iterations, max_pow) {
     def means = new HashMap()
     for (int i = 1; i <= max_pow; i++) {
         sz = 2**i
-        println("Run algorithms for arrays of size 2^"+i)
+        println("Run algorithms for arrays of size 2^" + i)
         def results = []
         for (int j = 0; j < iterations; j++) {
             def table = create_unsorted_array(sz, rand)
@@ -48,7 +49,7 @@ def run_sorts(List<Closure> closures, iterations, max_pow) {
     }
     for (int i = 1; i <= max_pow; i++) {
         sz = 2**i
-        println("Run algorithms for arrays of size 2^"+i)
+        println("Run algorithms for arrays of size 2^" + i)
         for (int j = 0; j < iterations; j++) {
             def table = create_unsorted_array(sz, rand)
             for (int k = 0; k < closures.size(); k++) {
@@ -73,13 +74,15 @@ sorting_algorithms = [new insertion_sort().&run,
                       new heap_sort().&run,
                       new merge_sort().&run,
                       new smooth_sort().&run,
-                      new quick_sort().&run]
+                      new quick_sort().&run,
+                      new api_sort().&run]
 
 sorting_algorithms_names = ["insertionSort.txt",
                             "heapSort.txt",
                             "mergeSort.txt",
                             "smoothSort.txt",
-                            "quickSort.txt"]
+                            "quickSort.txt",
+                            "apiSort.txt"]
 
 
 List<Map<Integer, Integer>> results = run_sorts(sorting_algorithms, ALGO_ITERATIONS, MAX_TWO_POW)
