@@ -1,13 +1,14 @@
 import algorithms.insertion_sort
 import algorithms.heap_sort
 import algorithms.merge_sort
+import algorithms.merge_in_place_sort
 import algorithms.quick_sort
 import algorithms.smooth_sort
 import algorithms.api_sort
 import utils.CSVMaker
 
 
-MAX_TWO_POW = 13
+MAX_TWO_POW = 15
 ALGO_ITERATIONS = 1000
 
 def create_unsorted_array(int size, Random rand) {
@@ -72,9 +73,8 @@ def run_sorts(List<Closure> closures, iterations, max_pow) {
 
 sorting_algorithms = [new insertion_sort().&run,
                       new heap_sort().&run,
-                      new merge_sort().&run,
+                      new merge_in_place_sort().&run,
                       new smooth_sort().&run,
-                      new quick_sort().&run,
                       new api_sort().&run,
                       new quick_sort(algorithms.quick_sort.Pivot.RANDOM).&run]
 
@@ -82,8 +82,8 @@ sorting_algorithms_names = ["insertionSort.txt",
                             "heapSort.txt",
                             "mergeSort.txt",
                             "smoothSort.txt",
-                            "quickSort.txt",
-                            "apiSort.txt"]
+                            "apiSort.txt",
+                            "quickSort.txt"]
 
 
 sorting_algorithms_quicksort = [new quick_sort(algorithms.quick_sort.Pivot.FIRST).&run,

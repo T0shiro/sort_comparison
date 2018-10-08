@@ -16,9 +16,15 @@ class merge_sort {
             return A
         }
         if (A.get(0) <= B.get(0)){
-            return [A.get(0)] + fusion(A.subList(1,A.size()), B)
+            return addElement(A.get(0), fusion(A.subList(1,A.size()), B))
         }else {
-            return [B.get(0)] + fusion(A, B.subList(1, B.size()))
+            return addElement(B.get(0), fusion(A, B.subList(1, B.size())))
         }
+    }
+
+    private List<Integer> addElement(int i, List<Integer> list){
+        def l = [i]
+        l.addAll(list)
+        return l
     }
 }
