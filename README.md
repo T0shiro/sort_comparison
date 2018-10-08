@@ -14,7 +14,13 @@ Groovy
 - Merge sort
 - Heap sort
 - Quick sort
-- Smooth sort (not yet)
+- Smooth sort
+- API sort
 
 ## How to run the code
+###Preconditions
+- Have ``gnuplot`` installed
+- Have ``groovy`` installed
+
+###Run the code
 Run the ``./exec.sh`` file
