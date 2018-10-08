@@ -6,8 +6,8 @@ import algorithms.smooth_sort
 import utils.CSVMaker
 
 
-MAX_TWO_POW = 6
-ALGO_ITERATIONS = 100
+MAX_TWO_POW = 12
+ALGO_ITERATIONS = 1000
 
 def create_unsorted_array(int size, Random rand) {
     def table = []
@@ -73,7 +73,7 @@ sorting_algorithms = [new insertion_sort().&run,
                       new heap_sort().&run,
                       new merge_sort().&run,
                       new smooth_sort().&run,
-                      new quick_sort().&run]
+                      new quick_sort(algorithms.quick_sort.Pivot.RANDOM).&run]
 
 sorting_algorithms_names = ["insertionSort.txt",
                             "heapSort.txt",
@@ -82,7 +82,23 @@ sorting_algorithms_names = ["insertionSort.txt",
                             "quickSort.txt"]
 
 
-List<Map<Integer, Integer>> results = run_sorts(sorting_algorithms, ALGO_ITERATIONS, MAX_TWO_POW)
-for (int i = 0; i < sorting_algorithms_names.size(); i++) {
-    new CSVMaker(results[i]).generateResultsFile(sorting_algorithms_names[i])
+sorting_algorithms_quicksort = [new quick_sort(algorithms.quick_sort.Pivot.FIRST).&run,
+                      new quick_sort(algorithms.quick_sort.Pivot.RANDOM).&run,
+                      new quick_sort(algorithms.quick_sort.Pivot.MEDIAN3).&run,
+                      new quick_sort(algorithms.quick_sort.Pivot.MEDIAN5).&run]
+
+sorting_algorithms_names_quicksort = ["quickSort-First.txt",
+                            "quickSort-Random.txt",
+                            "quickSort-Median-3.txt",
+                            "quickSort-Median-5.txt"]
+
+
+create_output_files(sorting_algorithms, sorting_algorithms_names)
+create_output_files(sorting_algorithms_quicksort, sorting_algorithms_names_quicksort)
+
+private void create_output_files(List<Closure<List<? extends Object>>> sorting_algorithms, List<String> sorting_algorithms_names) {
+    List<Map<Integer, Integer>> results = run_sorts(sorting_algorithms, ALGO_ITERATIONS, MAX_TWO_POW)
+    for (int i = 0; i < sorting_algorithms_names.size(); i++) {
+        new CSVMaker(results[i]).generateResultsFile(sorting_algorithms_names[i])
+    }
 }

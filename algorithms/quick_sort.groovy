@@ -2,7 +2,26 @@ package algorithms
 
 class quick_sort {
 
+    enum Pivot {
+        FIRST(this.&median_first),
+        RANDOM(this.&median_random),
+        MEDIAN3(this.&median_of_three),
+        MEDIAN5(this.&median_of_five)
+
+        private Closure medianClosure
+
+        Pivot(Closure c) {
+            this.medianClosure = c
+        }
+    }
+
+    private Pivot pivot
+
     private Random random = new Random()
+
+    quick_sort(Pivot pivot) {
+        this.pivot = pivot
+    }
 
     def run(List<Integer> values) {
         quicksort(values, 0, values.size() - 1, this.&median_random)
@@ -69,7 +88,7 @@ class quick_sort {
         return pair3.max()
     }
 
-    private def median_random(List<Integer> values, int start, int end) {
+    def median_random(List<Integer> values, int start, int end) {
         return values[random.nextInt(end - start + 1) + start]
     }
 
