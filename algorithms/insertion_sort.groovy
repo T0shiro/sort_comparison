@@ -1,15 +1,16 @@
 package algorithms
 
 class insertion_sort {
-    def run(List<Integer> values){
-        for (int i = 1; i < values.size(); i++) {
-            def index = i
-            while (index > 0 && values.get(index-1) > values.get(index)){
-                values.set(index, values.get(index-1))
-                values.set(index-1, values.get(index))
-                index --
+    def run(list){
+        def size = list.size()
+        (1..<size).each { i ->
+            def value = list[i]
+            def j = i - 1
+            for (; j >= 0 && list[j] > value; j--) {
+                list[j+1] = list[j]
             }
+            list[j+1] = value
         }
-        return values
+        return list
     }
 }
