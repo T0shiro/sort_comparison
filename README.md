@@ -18,9 +18,9 @@ Groovy
 - API sort
 
 ## How to run the code
-###Preconditions
+### Preconditions
 - Have ``gnuplot`` installed
 - Have ``groovy`` installed
 
-###Run the code
+### Run the code
 Run the ``./exec.sh`` file

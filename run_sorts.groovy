@@ -8,13 +8,21 @@ import algorithms.api_sort
 import utils.CSVMaker
 
 
-MAX_TWO_POW = 15
-ALGO_ITERATIONS = 1000
+MAX_TWO_POW = 14
+ALGO_ITERATIONS = 100
 
 def create_unsorted_array(int size, Random rand) {
     def table = []
     (1..size).each {
         table << rand.nextInt(3 * size)
+    }
+    return table
+}
+
+def create_sorted_array(int size, Random rand) {
+    def table = []
+	for (int i = 0; i < size; i++) {
+        table << i
     }
     return table
 }
@@ -95,6 +103,7 @@ sorting_algorithms_names_quicksort = ["quickSort-First.txt",
                             "quickSort-Random.txt",
                             "quickSort-Median-3.txt",
                             "quickSort-Median-5.txt"]
+
 
 
 create_output_files(sorting_algorithms, sorting_algorithms_names)

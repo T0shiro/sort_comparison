@@ -9,7 +9,7 @@ def getCoeffFor(sortName):
     y = []
     for line in lines:
         tab = line.split()
-        if int(tab[0]) > 256:
+        if int(tab[0]) > 512:
             x.append(int(tab[0]))
             y.append(float(tab[1]))
     covariance = numpy.cov(numpy.log(x), numpy.log(y))
