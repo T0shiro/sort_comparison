@@ -18,9 +18,13 @@ def getCoeffFor(sortName):
 
 sorts = ["quickSort", "quickSort-First", "quickSort-Median-3", "quickSort-Median-5", "quickSort-Random"]
 for sort in sorts:
-    print(sort + " : " + str(getCoeffFor(sort)))
+   print(sort + " : " + str(getCoeffFor(sort)))
 
 	
 sorts = ["apiSort", "heapSort", "insertionSort", "mergeSort", "quickSort", "smoothSort"]
+for sort in sorts:
+   print(sort + " : " + str(getCoeffFor(sort)))
+
+sorts = ["threshold-2^3", "threshold-2^4", "threshold-2^5", "threshold-2^6", "threshold-2^7"]
 for sort in sorts:
     print(sort + " : " + str(getCoeffFor(sort)))

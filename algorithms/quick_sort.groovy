@@ -1,6 +1,10 @@
 package algorithms
 
+import algorithms.insertion_sort
+
 class quick_sort {
+
+    int THRESHOLD = 0
 
     enum Pivot {
         FIRST(this.&median_first),
@@ -19,13 +23,18 @@ class quick_sort {
 
     private Random random = new Random()
 
-    quick_sort(Pivot pivot) {
+    quick_sort(Pivot pivot = Pivot.RANDOM, int THRESHOLD = 0) {
+        this.THRESHOLD = THRESHOLD
         this.pivot = pivot
     }
 
     def run(List<Integer> values) {
-        quicksort(values, 0, values.size() - 1, this.&median_random)
-        return values
+        if(THRESHOLD != 0 && values.size() <= THRESHOLD){
+            return new insertion_sort().run(values)
+        } else {
+            quicksort(values, 0, values.size() - 1, this.&median_random)
+            return values
+        }
     }
 
     private def quicksort(List<Integer> values, int start, int end, Closure median) {
@@ -102,4 +111,7 @@ class quick_sort {
         values[b] = tmp
     }
 
+    void setTHRESHOLD(int THRESHOLD) {
+        this.THRESHOLD = THRESHOLD
+    }
 }
